@@ -1,0 +1,115 @@
+# Analysis Configuration for Claude
+
+# Patterns to identify in notes
+patterns:
+  tasks:
+    enabled: true
+    keywords:
+      - "TODO"
+      - "TASK"
+      - "ACTION"
+      - "[ ]"
+      - "must"
+      - "need to"
+      - "should"
+
+  long_running_tasks:
+    enabled: true
+    threshold_days: 7  # Tasks mentioned in notes over 7+ days apart
+
+  recurring_themes:
+    enabled: true
+    min_occurrences: 3  # Topic must appear 3+ times to be flagged
+
+  questions:
+    enabled: true
+    keywords:
+      - "?"
+      - "how to"
+      - "why"
+      - "what if"
+
+# Tag generation rules
+tagging:
+  auto_generate: true
+  max_tags_per_note: 10
+
+  # Predefined tag categories
+  categories:
+    - work
+    - personal
+    - ideas
+    - projects
+    - learning
+    - health
+    - finance
+    - home
+
+  # Custom tag rules based on content
+  custom_rules:
+    - pattern: "meeting|standup|1:1|sync"
+      tag: "meetings"
+    - pattern: "goal|objective|okr"
+      tag: "goals"
+    - pattern: "book|article|paper|reading"
+      tag: "reading"
+    - pattern: "code|programming|dev|bug"
+      tag: "development"
+
+# Insights to extract
+insights:
+  # Task tracking
+  open_tasks:
+    enabled: true
+    format: "- [ ] {task_text}"
+
+  completed_tasks:
+    enabled: true
+    detect_patterns:
+      - "[x]"
+      - "DONE"
+      - "completed"
+      - "finished"
+
+  # Pattern recognition
+  habits:
+    enabled: true
+    description: "Identify recurring behaviors or activities"
+
+  decisions:
+    enabled: true
+    keywords:
+      - "decided"
+      - "going with"
+      - "chose"
+      - "will use"
+
+  ideas:
+    enabled: true
+    keywords:
+      - "idea:"
+      - "what if"
+      - "could try"
+      - "maybe"
+
+# Weekly rollup settings
+weekly_insights:
+  enabled: true
+  day_of_week: "Sunday"  # When to generate weekly summary
+  include:
+    - task_summary
+    - recurring_patterns
+    - top_themes
+    - open_questions
+
+# Output formatting
+output:
+  include_confidence_scores: true
+  include_original_text: true
+  link_related_notes: true
+
+# Claude prompt configuration
+claude:
+  model: "claude-sonnet-4-5-20250929"
+  max_tokens: 4000
+  temperature: 0.3  # Lower = more consistent, Higher = more creative

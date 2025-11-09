@@ -1,0 +1,31 @@
+# Environment
+.env
+venv/
+env/
+
+# Google Drive credentials
+config/credentials.json
+config/token.pickle
+config/token.json
+
+# Logs
+logs/*.log
+
+# Temporary files
+temp/*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
